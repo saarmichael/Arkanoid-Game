@@ -34,7 +34,7 @@ import java.util.List;
  * <p>
  * this class is responsible to initialize and run an Arkanoid game, relating to all Sprites from GameEnvironment.
  */
-public class Game implements Animation{
+public class Game implements Animation {
 
     private static final int BALL_X = 395;
     private static final int BALL_Y = 300;
@@ -59,6 +59,8 @@ public class Game implements Animation{
     private Counter blocksCounter;
     private Counter ballsCounter;
     private Counter score;
+    private AnimationRunner runner = new AnimationRunner();
+    private boolean running;
 
 
     /**
@@ -109,7 +111,7 @@ public class Game implements Animation{
         this.environment = new GameEnvironment();
         Rectangle paddleRect = new Rectangle(new Point(350, 580), PADDLE_WIDTH, PADDLE_HEIGHT);
         Paddle gamePaddle = new Paddle(paddleRect, PADDLE_COLOR, 11, 5);
-        gamePaddle.setKeyboard(ARKANOID_GUI.getKeyboardSensor());
+        gamePaddle.setKeyboard(this.runner.getGui().getKeyboardSensor());
         gamePaddle.addToGame(this);
         environment.setPaddle(gamePaddle);
         // the Ball game
@@ -190,11 +192,19 @@ public class Game implements Animation{
      * // Run the game - start the animation loop.
      */
     public void run() {
+
+        this.running = true;
+        // this.runner = new AnimationRunner();
+        this.runner.run(this);
+
+
+
         // set the GUI, sleeper and animation speed
-        Sleeper sleeper = new Sleeper();
-        int framesPerSecond = 60;
-        int millisecondsPerFrame = 1000 / framesPerSecond;
+        // Sleeper sleeper = new Sleeper();
+        // int framesPerSecond = 60;
+        // int millisecondsPerFrame = 1000 / framesPerSecond;
         // run the animation
+        /*
         while (this.blocksCounter.getValue() > 0 && this.ballsCounter.getValue() > 0) {
             // timing
             long startTime = System.currentTimeMillis();
@@ -229,6 +239,8 @@ public class Game implements Animation{
         ARKANOID_GUI.show(d);
         sleeper.sleepFor(1000);
         ARKANOID_GUI.close();
+
+         */
     }
 
     /**
@@ -244,11 +256,23 @@ public class Game implements Animation{
 
     @Override
     public void doOneFrame(DrawSurface d) {
-
+        d.setColor(BACKGROUND_COLOR);
+        d.fillRectangle(0, 0, 800, 600);
+        this.sprites.drawAllOn(d);
+        // d.drawText(20, 20, "blocks remain: " + this.blocksCounter.getValue(), 20);
+        this.sprites.notifyAllTimePassed();
+        if (this.blocksCounter.getValue() == 0) {
+            this.score.increase(100);
+            this.sprites.drawAllOn(d);
+            this.running = false;
+        } else if (this.ballsCounter.getValue() == 0) {
+            d.drawText(170, 170, "YOU DIE :(", 80);
+            this.running = false;
+        }
     }
 
     @Override
     public boolean shouldStop() {
-        return false;
+        return !this.running;
     }
 }

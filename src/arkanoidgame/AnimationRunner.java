@@ -17,9 +17,12 @@ public class AnimationRunner {
         this.sleeper = new Sleeper();
     }
 
-    // ...
+    public GUI getGui() {
+        return gui;
+    }
+
     public void run(Animation animation) {
-        int millisecondsPerFrame = 1000 / this.framesPerSecond ;
+        int millisecondsPerFrame = 1000 / this.framesPerSecond;
         while (!animation.shouldStop()) {
             long startTime = System.currentTimeMillis(); // timing
             DrawSurface d = gui.getDrawSurface();

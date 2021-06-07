@@ -44,5 +44,6 @@ public class BallRemover implements HitListener {
     public void hitEvent(Block beingHit, Ball hitter) {
         hitter.removeFromGame(this.game);
         this.remainingBalls.decrease();
+        System.out.println(this.remainingBalls);
     }
 }
