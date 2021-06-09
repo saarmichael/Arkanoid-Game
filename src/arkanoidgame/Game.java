@@ -19,6 +19,7 @@ import arkanoidsprites.StatsDisplayingBlock;
 import arkanoidsprites.Velocity;
 import biuoop.DrawSurface;
 import biuoop.GUI;
+import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
@@ -44,7 +45,7 @@ public class Game implements Animation {
     private static final Color BALL_COLOR = new Color(0, 110, 80);
     private static final Color PADDLE_COLOR = new Color(33, 80, 217);
     private static final Color BACKGROUND_COLOR = new Color(189, 235, 240);
-    private static final int PADDLE_HEIGHT = 15;
+    private static final int PADDLE_HEIGHT = 10;
     private static final int PADDLE_WIDTH = 110;
     private static final GUI ARKANOID_GUI = new GUI("Arkanoid Game", 800, 600);
     private static final Color[] BLOCKS_COLORS = {new Color(144, 238, 144), new Color(103, 216, 154),
@@ -61,6 +62,7 @@ public class Game implements Animation {
     private Counter score;
     private AnimationRunner runner = new AnimationRunner();
     private boolean running;
+    private KeyboardSensor sensor;
 
 
     /**
@@ -109,9 +111,10 @@ public class Game implements Animation {
         gameHitListeners.add(scoreTracker);
         this.sprites = new SpriteCollection();
         this.environment = new GameEnvironment();
+        this.sensor = this.runner.getGui().getKeyboardSensor();
         Rectangle paddleRect = new Rectangle(new Point(350, 580), PADDLE_WIDTH, PADDLE_HEIGHT);
         Paddle gamePaddle = new Paddle(paddleRect, PADDLE_COLOR, 11, 5);
-        gamePaddle.setKeyboard(this.runner.getGui().getKeyboardSensor());
+        gamePaddle.setKeyboard(this.sensor);
         gamePaddle.addToGame(this);
         environment.setPaddle(gamePaddle);
         // the Ball game
@@ -159,9 +162,9 @@ public class Game implements Animation {
         and in the second loop change j < 785 to j < 665
         ENJOY!
          */
-        for (int i = 125; i < 250; i += 25) {
+        for (int i = 125; i < 150; i += 25) {
             Color blockColor = BLOCKS_COLORS[q];
-            for (int j = k; j < 785; j += 60) {
+            for (int j = k; j < 665; j += 60) {
                 Block block = new Block(
                         new Rectangle(new Point(j, i), 60, 25), blockColor, gameHitListeners);
                 block.addToGame(this);
@@ -259,13 +262,16 @@ public class Game implements Animation {
         d.setColor(BACKGROUND_COLOR);
         d.fillRectangle(0, 0, 800, 600);
         this.sprites.drawAllOn(d);
+        if (this.sensor.isPressed("p")) {
+            this.runner.run(new PauseGame(this.sensor));
+        }
         // d.drawText(20, 20, "blocks remain: " + this.blocksCounter.getValue(), 20);
         this.sprites.notifyAllTimePassed();
-        if (this.blocksCounter.getValue() == 0) {
+        if (this.blocksCounter.getValue() <= 0) {
             this.score.increase(100);
             this.sprites.drawAllOn(d);
             this.running = false;
-        } else if (this.ballsCounter.getValue() == 0) {
+        } else if (this.ballsCounter.getValue() <= 0) {
             d.drawText(170, 170, "YOU DIE :(", 80);
             this.running = false;
         }
