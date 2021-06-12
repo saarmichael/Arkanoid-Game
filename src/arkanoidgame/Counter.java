@@ -1,7 +1,8 @@
-package arkanoidgame;
-
 // 315240937
 // Michael Saar
+
+package arkanoidgame;
+
 
 /**
  * this class represents objects that keep a counter variable.

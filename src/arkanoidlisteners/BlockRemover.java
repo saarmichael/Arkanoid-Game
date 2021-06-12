@@ -17,6 +17,7 @@ import arkanoidsprites.Block;
  */
 public class BlockRemover implements HitListener {
 
+
     private final Game game;
     private Counter remainingBlocks;
 

@@ -1,5 +1,8 @@
-package arkanoidgame;// 315240937
+// 315240937
 // Michael Saar
+
+package arkanoidgame;
+
 
 import arkanoidgame.Animation;
 import biuoop.DrawSurface;

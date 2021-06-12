@@ -20,7 +20,6 @@ import arkanoidsprites.Velocity;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
-import biuoop.Sleeper;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
 
@@ -138,7 +137,7 @@ public class Game implements Animation {
         Block bRight = new Block(new Rectangle(new Point(785, 0), 15, 600));
         Block bLeft = new Block(new Rectangle(new Point(0, 0), 15, 600));
         Block bTop = new Block(new Rectangle(new Point(0, 0), 800, 25));
-        Block bBot = new Block(new Rectangle(new Point(0, 597), 800, 3));
+        Block bBot = new Block(new Rectangle(new Point(0, 590), 800, 3));
         //Block bDeath = new Block(new Rectangle(new Point(0, 599), 800, 3));
         bRight.addToGame(this);
         bLeft.addToGame(this);
@@ -162,9 +161,9 @@ public class Game implements Animation {
         and in the second loop change j < 785 to j < 665
         ENJOY!
          */
-        for (int i = 125; i < 150; i += 25) {
+        for (int i = 125; i < 250; i += 25) {
             Color blockColor = BLOCKS_COLORS[q];
-            for (int j = k; j < 665; j += 60) {
+            for (int j = k; j < 785; j += 60) {
                 Block block = new Block(
                         new Rectangle(new Point(j, i), 60, 25), blockColor, gameHitListeners);
                 block.addToGame(this);
@@ -195,7 +194,7 @@ public class Game implements Animation {
      * // Run the game - start the animation loop.
      */
     public void run() {
-
+        this.runner.run(new CountdownAnimation(2, 3, this.sprites));
         this.running = true;
         // this.runner = new AnimationRunner();
         this.runner.run(this);
@@ -268,10 +267,12 @@ public class Game implements Animation {
         // d.drawText(20, 20, "blocks remain: " + this.blocksCounter.getValue(), 20);
         this.sprites.notifyAllTimePassed();
         if (this.blocksCounter.getValue() <= 0) {
+            this.sprites.notifyAllTimePassed();
             this.score.increase(100);
             this.sprites.drawAllOn(d);
             this.running = false;
         } else if (this.ballsCounter.getValue() <= 0) {
+            this.sprites.notifyAllTimePassed();
             d.drawText(170, 170, "YOU DIE :(", 80);
             this.running = false;
         }

@@ -17,7 +17,20 @@ import java.util.List;
  */
 public class SpriteCollection {
 
-    private List<Sprite> sprites = new ArrayList<>();
+    private List<Sprite> sprites;
+
+    public SpriteCollection() {
+        this.sprites = new ArrayList<>();
+    }
+
+    /**
+     * Constructor with parameter.
+     *
+     * @param sprites
+     */
+    public SpriteCollection(List<Sprite> sprites) {
+        this.sprites = sprites;
+    }
 
     /**
      * @param s a Sprite that should be added to sprites List

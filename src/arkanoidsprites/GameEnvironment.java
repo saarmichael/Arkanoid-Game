@@ -30,7 +30,7 @@ public class GameEnvironment {
     public GameEnvironment() {
         this.collidables = new ArrayList<>();
         this.paddle = null;
-        cornerFlag = 0;
+        this.cornerFlag = 0;
     }
 
     /**
