@@ -4,7 +4,7 @@ package arkanoidsprites;
 // Michael Saar
 
 
-import arkanoidgame.Game;
+import arkanoidgame.GameLevel;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 import geometryprimatives.Point;
@@ -240,14 +240,14 @@ public class Paddle implements Sprite, Collidable {
      * @param g a Game the Block should be added to both as a Collidable and as a Sprite
      */
     @Override
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addCollidable(this);
         g.addSprite(this);
     }
 
 
     @Override
-    public void removeFromGame(Game game) {
+    public void removeFromGame(GameLevel gameLevel) {
         //empty for now.
         return;
     }

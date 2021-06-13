@@ -2,7 +2,7 @@ package arkanoidsprites;
 // 315240937
 // Michael Saar
 
-import arkanoidgame.Game;
+import arkanoidgame.GameLevel;
 import biuoop.DrawSurface;
 
 /**
@@ -28,16 +28,16 @@ public interface Sprite {
     void timePassed();
 
     /**
-     * @param game a game to add the Sprite to
+     * @param gameLevel a game to add the Sprite to
      *             <p>
      *             adds a sprite to a Game
      */
-    void addToGame(Game game);
+    void addToGame(GameLevel gameLevel);
 
     /**
-     * @param game a game to remove Sprite from
+     * @param gameLevel a game to remove Sprite from
      *             <p>
      *             adds a sprite to a Game
      */
-    void removeFromGame(Game game);
+    void removeFromGame(GameLevel gameLevel);
 }

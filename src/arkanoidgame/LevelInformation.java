@@ -8,6 +8,7 @@ import arkanoidsprites.Sprite;
 import arkanoidsprites.Velocity;
 
 
+import java.awt.*;
 import java.util.List;
 
 public interface LevelInformation {
@@ -18,9 +19,13 @@ public interface LevelInformation {
     // Note that initialBallVelocities().size() == numberOfBalls()
     List<Velocity> initialBallVelocities();
 
+    List<Color> initialBallColor();
+
     int paddleSpeed();
 
     int paddleWidth();
+
+    Color paddleColor();
 
     // the level name will be displayed at the top of the screen.
     String levelName();
@@ -31,6 +36,8 @@ public interface LevelInformation {
     // The Blocks that make up this level, each block contains
     // its size, color and location.
     List<Block> blocks();
+
+    List<Block> unRemovableBlocks();
 
     // Number of blocks that should be removed
     // before the level is considered to be "cleared".

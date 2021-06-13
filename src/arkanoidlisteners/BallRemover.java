@@ -5,7 +5,7 @@ package arkanoidlisteners;
 
 
 import arkanoidgame.Counter;
-import arkanoidgame.Game;
+import arkanoidgame.GameLevel;
 import arkanoidsprites.Ball;
 import arkanoidsprites.Block;
 
@@ -17,17 +17,17 @@ import arkanoidsprites.Block;
  */
 public class BallRemover implements HitListener {
 
-    private final Game game;
+    private final GameLevel gameLevel;
     private Counter remainingBalls;
 
     /**
      * constructor.
      *
-     * @param game          game.
+     * @param gameLevel          game.
      * @param removedBlocks number of remain Blocks in Game.
      */
-    public BallRemover(Game game, Counter removedBlocks) {
-        this.game = game;
+    public BallRemover(GameLevel gameLevel, Counter removedBlocks) {
+        this.gameLevel = gameLevel;
         this.remainingBalls = removedBlocks;
     }
 
@@ -42,7 +42,7 @@ public class BallRemover implements HitListener {
 
     @Override
     public void hitEvent(Block beingHit, Ball hitter) {
-        hitter.removeFromGame(this.game);
+        hitter.removeFromGame(this.gameLevel);
         this.remainingBalls.decrease();
         System.out.println(this.remainingBalls);
     }

@@ -2,8 +2,6 @@
 // Michael Saar
 package arkanoidgame;
 
-import arkanoidlisteners.BlockRemover;
-import arkanoidlisteners.HitListener;
 import arkanoidsprites.Block;
 import arkanoidsprites.Level1Background;
 import arkanoidsprites.Sprite;
@@ -11,7 +9,7 @@ import arkanoidsprites.Velocity;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +50,13 @@ public class Level1 implements LevelInformation {
     }
 
     @Override
+    public List<Color> initialBallColor() {
+        List<Color> ballsCs = new ArrayList<>();
+        ballsCs.add(new Color(0, 110, 80));
+        return ballsCs;
+    }
+
+    @Override
     public int paddleSpeed() {
         return 8;
     }
@@ -59,6 +64,11 @@ public class Level1 implements LevelInformation {
     @Override
     public int paddleWidth() {
         return 100;
+    }
+
+    @Override
+    public Color paddleColor() {
+        return new Color(15, 226, 156);
     }
 
     @Override
@@ -77,6 +87,11 @@ public class Level1 implements LevelInformation {
         List<Block> blocksList = new ArrayList<>();
         blocksList.add(b1);
         return blocksList;
+    }
+
+    @Override
+    public List<Block> unRemovableBlocks() {
+        return null;
     }
 
     @Override

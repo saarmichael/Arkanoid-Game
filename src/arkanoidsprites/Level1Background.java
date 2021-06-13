@@ -7,12 +7,12 @@ import biuoop.DrawSurface;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
 
-import java.awt.*;
+import java.awt.Color;
 
-public class Level1Background extends Block{
+public class Level1Background extends Block {
 
     public Level1Background(int width, int height) {
-        super(new Rectangle(new Point(0 ,0), width, height));
+        super(new Rectangle(new Point(0, 0), width, height));
         super.setColor(Color.BLACK);
     }
 

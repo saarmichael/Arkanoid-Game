@@ -1,7 +1,7 @@
 // 315240937
 // Michael Saar
 
-import arkanoidgame.Game;
+import arkanoidgame.GameLevel;
 
 
 /**
@@ -18,9 +18,9 @@ public class Ass5Game {
      * @param args empty.
      */
     public static void main(String[] args) {
-        Game game = new Game();
-        game.initialize();
-        game.run();
+        // GameLevel gameLevel = new GameLevel();
+        // gameLevel.initialize();
+        // gameLevel.run();
     }
 
 }

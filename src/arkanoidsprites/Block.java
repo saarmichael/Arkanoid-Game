@@ -3,7 +3,7 @@ package arkanoidsprites;
 // 315240937
 // Michael Saar
 
-import arkanoidgame.Game;
+import arkanoidgame.GameLevel;
 import arkanoidlisteners.HitListener;
 import arkanoidlisteners.HitNotifier;
 import biuoop.DrawSurface;
@@ -123,6 +123,17 @@ public class Block implements Collidable, Sprite, HitNotifier {
         this.hitListeners.add(hl);
     }
 
+    /**
+     * add a list of Listeners to Block.
+     *
+     * @param hls
+     */
+    public void addHitListeners(List<HitListener> hls) {
+        // preventing from adding hl to all other Colliidable's hitListeners List
+        this.hitListeners = new ArrayList<>(this.hitListeners);
+        this.hitListeners.addAll(hls);
+    }
+
     @Override
     public void removeHitListener(HitListener hl) {
         this.hitListeners.remove(hl);
@@ -193,18 +204,18 @@ public class Block implements Collidable, Sprite, HitNotifier {
     }
 
     /**
-     * @param game a Game the Block should be added to both as a Collidable and as a Sprite
+     * @param gameLevel a Game the Block should be added to both as a Collidable and as a Sprite
      */
     @Override
-    public void addToGame(Game game) {
-        game.addCollidable(this);
-        game.addSprite(this);
+    public void addToGame(GameLevel gameLevel) {
+        gameLevel.addCollidable(this);
+        gameLevel.addSprite(this);
     }
 
     @Override
-    public void removeFromGame(Game game) {
-        game.removeCollidable(this);
-        game.removeSprite(this);
+    public void removeFromGame(GameLevel gameLevel) {
+        gameLevel.removeCollidable(this);
+        gameLevel.removeSprite(this);
     }
 
 }

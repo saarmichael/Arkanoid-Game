@@ -4,7 +4,7 @@
 package arkanoidsprites;
 
 
-import arkanoidgame.Game;
+import arkanoidgame.GameLevel;
 import biuoop.DrawSurface;
 import gamecollision.CollisionInfo;
 import geometryprimatives.Line;
@@ -23,7 +23,8 @@ import java.util.Random;
 
 public class Ball implements Sprite {
 
-    private static final int DEFAULT_END_FRAME = 200;
+    private static final int DEFAULT_END_FRAME_X = 775;
+    private static final int DEFAULT_END_FRAME_Y = 590;
     private static final int DEFAULT_RADIUS = 1;
     private static final Color DEFAULT_COLOR = Color.BLACK;
     private static final Velocity DEFAULT_VELOCITY = Velocity.fromAngleAndSpeed(0, 0);
@@ -66,7 +67,7 @@ public class Ball implements Sprite {
         this.color = color;
         this.velocity = velocity;
         this.frameStart = Point.getOrigin();
-        this.frameEnd = new Point(DEFAULT_END_FRAME, DEFAULT_END_FRAME);
+        this.frameEnd = new Point(DEFAULT_END_FRAME_X, DEFAULT_END_FRAME_Y);
     }
 
     /**
@@ -82,7 +83,7 @@ public class Ball implements Sprite {
         this.color = color;
         this.velocity = DEFAULT_VELOCITY;
         frameStart = Point.getOrigin();
-        frameEnd = new Point(DEFAULT_END_FRAME, DEFAULT_END_FRAME);
+        frameEnd = new Point(DEFAULT_END_FRAME_X, DEFAULT_END_FRAME_Y);
     }
 
     /**
@@ -101,7 +102,7 @@ public class Ball implements Sprite {
         this.color = color;
         this.velocity = DEFAULT_VELOCITY;
         this.frameStart = Point.getOrigin();
-        this.frameEnd = new Point(DEFAULT_END_FRAME, DEFAULT_END_FRAME);
+        this.frameEnd = new Point(DEFAULT_END_FRAME_X, DEFAULT_END_FRAME_Y);
     }
 
     /**
@@ -113,7 +114,7 @@ public class Ball implements Sprite {
         this.color = DEFAULT_COLOR;
         this.velocity = DEFAULT_VELOCITY;
         frameStart = Point.getOrigin();
-        frameEnd = new Point(DEFAULT_END_FRAME, DEFAULT_END_FRAME);
+        frameEnd = new Point(DEFAULT_END_FRAME_X, DEFAULT_END_FRAME_Y);
     }
 
     /**
@@ -316,16 +317,16 @@ public class Ball implements Sprite {
     }
 
     @Override
-    public void removeFromGame(Game game) {
-        game.removeSprite(this);
+    public void removeFromGame(GameLevel gameLevel) {
+        gameLevel.removeSprite(this);
     }
 
     /**
-     * @param game a Game the Ball should be added to
+     * @param gameLevel a Game the Ball should be added to
      */
     @Override
-    public void addToGame(Game game) {
-        game.addSprite(this);
+    public void addToGame(GameLevel gameLevel) {
+        gameLevel.addSprite(this);
     }
 
     /**
