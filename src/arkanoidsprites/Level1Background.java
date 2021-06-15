@@ -23,5 +23,9 @@ public class Level1Background extends Block {
         surface.drawCircle(400, 200, 50);
         surface.drawCircle(400, 200, 75);
         surface.drawCircle(400, 200, 100);
+        surface.drawLine(375, 200, 300, 200);
+        surface.drawLine(425, 200, 500, 200);
+        surface.drawLine(400, 175, 400, 100);
+        surface.drawLine(400, 225, 400, 300);
     }
 }

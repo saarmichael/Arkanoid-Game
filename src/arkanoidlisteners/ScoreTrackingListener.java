@@ -39,5 +39,6 @@ public class ScoreTrackingListener implements HitListener {
     public void hitEvent(Block beingHit, Ball hitter) {
         //a hit worth 5 points.
         this.currentScore.increase(5);
+        System.out.println(this.currentScore);
     }
 }

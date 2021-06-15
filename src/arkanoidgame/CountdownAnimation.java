@@ -26,6 +26,7 @@ public class CountdownAnimation implements Animation {
     private long timePassed;
     private long iterateTime;
     private long endTime;
+    private double size = 2;
 
     public CountdownAnimation(double numOfSeconds, int countFrom, SpriteCollection gameScreen) {
         this.numOfSeconds = numOfSeconds;
@@ -42,9 +43,9 @@ public class CountdownAnimation implements Animation {
     public void doOneFrame(DrawSurface d) {
         this.gameScreen.drawAllOn(d);
         d.setColor(new Color(14, 248, 35));
-        d.drawText(380, (d.getHeight() / 2) + 2, String.valueOf(this.counter.getValue()), 42);
+        d.drawText(380, (d.getHeight() / 2) + 2, String.valueOf(this.counter.getValue()), (int) (this.size * 42));
         d.setColor(Color.BLACK);
-        d.drawText(383, d.getHeight() / 2, String.valueOf(this.counter.getValue()), 32);
+        d.drawText(383, d.getHeight() / 2, String.valueOf(this.counter.getValue()), (int) (this.size * 32));
         if (System.currentTimeMillis() > this.endTime) {
             this.stop = true;
             return;
@@ -53,8 +54,10 @@ public class CountdownAnimation implements Animation {
             this.counter.decrease();
             this.timePassed = 0;
             this.iterateTime = System.currentTimeMillis();
+            this.size = 2;
         }
         this.timePassed = System.currentTimeMillis() - this.iterateTime;
+        this.size = this.size - 0.02;
 
 
 

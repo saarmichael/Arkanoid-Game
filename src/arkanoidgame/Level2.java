@@ -1,6 +1,9 @@
 package arkanoidgame;
 
-import arkanoidsprites.*;
+import arkanoidsprites.Sprite;
+import arkanoidsprites.Block;
+import arkanoidsprites.Velocity;
+import arkanoidsprites.Level2Background;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
 
@@ -19,9 +22,9 @@ public class Level2 implements LevelInformation {
     public List<Velocity> initialBallVelocities() {
         List<Velocity> ballsVs = new ArrayList<>();
         // for each ball there is a corresponding ball in exactly the negate angle.
-        for (int i = 0; i < this.numberOfBalls(); i = i + 2) {
-            ballsVs.add(Velocity.fromAngleAndSpeed(10 * i, 5));
-            ballsVs.add(Velocity.fromAngleAndSpeed(-10 * i, 5));
+        for (int i = 1; i < this.numberOfBalls() + 1; i = i + 2) {
+            ballsVs.add(Velocity.fromAngleAndSpeed(5 * i, 5));
+            ballsVs.add(Velocity.fromAngleAndSpeed(-5 * i, 5));
         }
         return ballsVs;
     }
@@ -42,7 +45,7 @@ public class Level2 implements LevelInformation {
 
     @Override
     public int paddleWidth() {
-        return 650;
+        return 600;
     }
 
     @Override

@@ -16,8 +16,9 @@ import java.util.List;
  */
 public class StatsDisplayingBlock extends Block {
 
-    private Counter stat;
-    private String text;
+    private Counter score;
+    private Counter lives;
+    private String levelName;
 
     /**
      * constructor method.
@@ -29,10 +30,11 @@ public class StatsDisplayingBlock extends Block {
      * @param stat         the stat to display
      */
     public StatsDisplayingBlock(
-            Rectangle rect, Color color, List<HitListener> hitListeners, Counter stat, String text) {
+            Rectangle rect, Color color, List<HitListener> hitListeners, Counter stat, Counter lives, String text) {
         super(rect, color, hitListeners);
-        this.stat = stat;
-        this.text = text;
+        this.score = stat;
+        this.levelName = text;
+        this.lives = lives;
     }
 
     /**
@@ -41,7 +43,7 @@ public class StatsDisplayingBlock extends Block {
      * @return the stat.
      */
     public Counter getStat() {
-        return stat;
+        return this.score;
     }
 
     /**
@@ -50,7 +52,7 @@ public class StatsDisplayingBlock extends Block {
      * @return the text.
      */
     public String getText() {
-        return text;
+        return this.levelName;
     }
 
     /**
@@ -59,7 +61,7 @@ public class StatsDisplayingBlock extends Block {
      * @param newStat to set.
      */
     public void setScore(Counter newStat) {
-        this.stat = newStat;
+        this.score = newStat;
     }
 
     /**
@@ -68,16 +70,24 @@ public class StatsDisplayingBlock extends Block {
      * @param newText to set.
      */
     public void setText(String newText) {
-        this.text = newText;
+        this.levelName = newText;
     }
 
     @Override
     public void drawOn(DrawSurface surface) {
         super.drawOn(surface);
         surface.setColor(Color.BLACK);
-        surface.drawText((int) (super.getBlock().getUpperLeft().getX() + (super.getBlock().getWidth() / 2.5)),
+        surface.drawText((int) (super.getBlock().getUpperLeft().getX() + 20),
                 (int) (super.getBlock().getUpperLeft().getY() + (super.getBlock().getHeight())),
-                this.text + this.stat.getValue(),
+                "Lives: " + this.lives.getValue(),
+                (int) super.getBlock().getHeight());
+        surface.drawText((int) (super.getBlock().getUpperLeft().getX() + 220),
+                (int) (super.getBlock().getUpperLeft().getY() + (super.getBlock().getHeight())),
+                "score: " + this.score.getValue(),
+                (int) super.getBlock().getHeight());
+        surface.drawText((int) (super.getBlock().getUpperLeft().getX() + 420),
+                (int) (super.getBlock().getUpperLeft().getY() + (super.getBlock().getHeight())),
+                "Level Name: " + this.levelName,
                 (int) super.getBlock().getHeight());
     }
 }

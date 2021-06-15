@@ -45,7 +45,7 @@ public class Level1 implements LevelInformation {
     @Override
     public List<Velocity> initialBallVelocities() {
         List<Velocity> ballsVs = new ArrayList<>();
-        ballsVs.add(Velocity.fromAngleAndSpeed(0, 5));
+        ballsVs.add(Velocity.fromAngleAndSpeed(0, 3));
         return ballsVs;
     }
 

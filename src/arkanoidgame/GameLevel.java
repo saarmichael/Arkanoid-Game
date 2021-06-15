@@ -7,13 +7,8 @@ package arkanoidgame;
 import arkanoidlisteners.BallRemover;
 import arkanoidlisteners.BlockRemover;
 import arkanoidlisteners.HitListener;
-import arkanoidsprites.Block;
-import arkanoidsprites.Paddle;
-import arkanoidsprites.GameEnvironment;
-import arkanoidsprites.Ball;
-import arkanoidsprites.SpriteCollection;
-import arkanoidsprites.Collidable;
-import arkanoidsprites.Sprite;
+import arkanoidlisteners.ScoreTrackingListener;
+import arkanoidsprites.*;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 import geometryprimatives.Point;
@@ -59,6 +54,18 @@ public class GameLevel implements Animation {
         this.running = true;
     }
 
+    /**
+     * constructor.
+     *
+     * @param ks a KeyboardSensor.
+     * @param ar an AnimationRunner.
+     * @param le a LevelInformation to initialize GameLevel according to.
+     */
+    public GameLevel(KeyboardSensor ks, AnimationRunner ar, LevelInformation le, Counter score) {
+        this(ks, ar, le);
+        this.score = score;
+    }
+
     private void paddleCreator() {
         Rectangle paddleRect = new Rectangle(
                 new Point(400 - (this.info.paddleWidth() / 2), 580), this.info.paddleWidth(), 10);
@@ -97,16 +104,26 @@ public class GameLevel implements Animation {
         bBot.addToGame(this);
         HitListener ballRemover = new BallRemover(this, this.ballsCounter);
         bBot.addHitListener(ballRemover);
+        HitListener statListener = new ScoreTrackingListener(this.score);
+        List<HitListener> scoreListenersList = new ArrayList<>();
+        scoreListenersList.add(statListener);
+        Block statBar = new StatsDisplayingBlock((new Rectangle(new Point(0, 0), 800, 25)),
+                Color.CYAN, scoreListenersList, this.score,
+                this.ballsCounter, this.info.levelName());
+        statBar.addToGame(this);
     }
 
     public void initialize() {
         this.sprites.getSprites().add(this.info.getBackground());
         HitListener blockRemover = new BlockRemover(this, this.blocksCounter);
+        HitListener scoreTracker = new ScoreTrackingListener(this.score);
         List<HitListener> gameLevelHitListeners = new ArrayList<>();
         gameLevelHitListeners.add(blockRemover);
+        gameLevelHitListeners.add(scoreTracker);
         for (int i = 0; i < this.blocks.size(); i++) {
             this.blocks.get(i).addToGame(this);
             this.blocks.get(i).addHitListener(blockRemover);
+            this.blocks.get(i).addHitListener(scoreTracker);
         }
         this.paddleCreator();
         this.ballsCreator();
@@ -154,6 +171,18 @@ public class GameLevel implements Animation {
      */
     public void removeSprite(Sprite s) {
         this.sprites.removeSprite(s);
+    }
+
+    public Counter getScore() {
+        return score;
+    }
+
+    public Counter getBallsCounter() {
+        return ballsCounter;
+    }
+
+    public Counter getBlocksCounter() {
+        return blocksCounter;
     }
 
     @Override
@@ -225,6 +254,36 @@ import java.util.List;
 
 /**
  * @author Michael Saar
+ * @param c a Colliadable to add to Game's Collidabales List in GameEnvironment
+ * <p>
+ * remove Collidable c from the game.
+ * @param c the Collidable to remove
+ * @param s a Sprite to add to Game's Sprites List.
+ * <p>
+ * remove Sprite s from the game Sprite's collection.
+ * @param s the Sprite to remove
+ * <p>
+ * Initialize a new game: create the Blocks and Ball (and Paddle) and add them to the game.
+ * <p>
+ * // Run the game - start the animation loop.
+ *
+ * <p>
+ * this main method runs the Game.
+ * @param c a Colliadable to add to Game's Collidabales List in GameEnvironment
+ * <p>
+ * remove Collidable c from the game.
+ * @param c the Collidable to remove
+ * @param s a Sprite to add to Game's Sprites List.
+ * <p>
+ * remove Sprite s from the game Sprite's collection.
+ * @param s the Sprite to remove
+ * <p>
+ * Initialize a new game: create the Blocks and Ball (and Paddle) and add them to the game.
+ * <p>
+ * // Run the game - start the animation loop.
+ *
+ * <p>
+ * this main method runs the Game.
  * @param c a Colliadable to add to Game's Collidabales List in GameEnvironment
  * <p>
  * remove Collidable c from the game.
