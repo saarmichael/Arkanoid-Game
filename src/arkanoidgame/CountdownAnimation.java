@@ -42,9 +42,11 @@ public class CountdownAnimation implements Animation {
 
     public void doOneFrame(DrawSurface d) {
         this.gameScreen.drawAllOn(d);
-        d.setColor(new Color(14, 248, 35));
-        d.drawText(380, (d.getHeight() / 2) + 2, String.valueOf(this.counter.getValue()), (int) (this.size * 42));
+        d.setColor(new Color(27, 73, 33));
+        d.fillCircle(395, (d.getHeight() / 2) - 20, 50);
         d.setColor(Color.BLACK);
+        d.drawText(380, (d.getHeight() / 2) + 2, String.valueOf(this.counter.getValue()), (int) (this.size * 42));
+        d.setColor(new Color(80, 232, 123));
         d.drawText(383, d.getHeight() / 2, String.valueOf(this.counter.getValue()), (int) (this.size * 32));
         if (System.currentTimeMillis() > this.endTime) {
             this.stop = true;
@@ -86,5 +88,10 @@ public class CountdownAnimation implements Animation {
 
     public boolean shouldStop() {
         return this.stop;
+    }
+
+    @Override
+    public void setStop(boolean newCondition) {
+        this.stop = newCondition;
     }
 }

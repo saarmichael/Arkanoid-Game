@@ -26,9 +26,9 @@ public class Level3 implements LevelInformation {
 
     @Override
     public List<Velocity> initialBallVelocities() {
-        Velocity v1 = Velocity.fromAngleAndSpeed(0, 6);
-        Velocity v2 = Velocity.fromAngleAndSpeed(10, 6);
-        Velocity v3 = Velocity.fromAngleAndSpeed(-10, 6);
+        Velocity v1 = Velocity.fromAngleAndSpeed(0, 5);
+        Velocity v2 = Velocity.fromAngleAndSpeed(10, 5);
+        Velocity v3 = Velocity.fromAngleAndSpeed(-10, 5);
         List<Velocity> velocities = new ArrayList<>();
         velocities.add(v1);
         velocities.add(v2);
@@ -38,9 +38,9 @@ public class Level3 implements LevelInformation {
 
     @Override
     public List<Color> initialBallColor() {
-        Color c1 = new Color(239, 180, 75);
-        Color c3 = new Color(239, 180, 75);
-        Color c2 = new Color(239, 180, 75);
+        Color c1 = new Color(5, 62, 9);
+        Color c3 = new Color(5, 62, 9);
+        Color c2 = new Color(5, 62, 9);
         List<Color> colors = new ArrayList<>();
         colors.add(c1);
         colors.add(c2);
@@ -60,7 +60,7 @@ public class Level3 implements LevelInformation {
 
     @Override
     public Color paddleColor() {
-        return new Color(205, 114, 227, 255);
+        return new Color(6, 102, 90);
     }
 
     @Override
@@ -95,20 +95,20 @@ public class Level3 implements LevelInformation {
     @Override
     public List<Block> unRemovableBlocks() {
         Block b1 = new Block(
-                new Rectangle(new Point(180, 480), 60, 120), new Color(40, 46, 50));
-        Block b2 = new Block(
-                new Rectangle(new Point(200, 430), 20, 50), new Color(40, 46, 50));
-        Block b3 = new Block(
-                new Rectangle(new Point(205, 200), 10, 230), new Color(56, 67, 71));
+                new Rectangle(new Point(180, 350), 60, 250), new Color(40, 46, 50));
+        //Block b2 = new Block(
+          //      new Rectangle(new Point(200, 430), 20, 50), new Color(40, 46, 50));
+        //Block b3 = new Block(
+          //      new Rectangle(new Point(205, 200), 10, 230), new Color(56, 67, 71));
         List<Block> unBlocks = new ArrayList<>();
         unBlocks.add(b1);
-        unBlocks.add(b2);
-        unBlocks.add(b3);
+        // unBlocks.add(b2);
+        // unBlocks.add(b3);
         return unBlocks;
     }
 
     @Override
     public int numberOfBlocksToRemove() {
-        return 40;
+        return 10;
     }
 }

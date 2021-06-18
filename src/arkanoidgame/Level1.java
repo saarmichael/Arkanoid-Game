@@ -68,7 +68,7 @@ public class Level1 implements LevelInformation {
 
     @Override
     public Color paddleColor() {
-        return new Color(15, 226, 156);
+        return new Color(6, 102, 90);
     }
 
     @Override

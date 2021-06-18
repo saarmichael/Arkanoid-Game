@@ -50,7 +50,7 @@ public class Level2 implements LevelInformation {
 
     @Override
     public Color paddleColor() {
-        return new Color(199, 123, 29);
+        return new Color(6, 102, 90);
     }
 
     @Override
@@ -82,6 +82,6 @@ public class Level2 implements LevelInformation {
 
     @Override
     public int numberOfBlocksToRemove() {
-        return 15;
+        return 2;
     }
 }

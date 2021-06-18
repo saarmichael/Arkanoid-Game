@@ -48,7 +48,7 @@ public class GameLevel implements Animation {
         this.blocks.addAll(le.blocks());
         this.environment = new GameEnvironment();
         this.sprites = new SpriteCollection();
-        this.blocksCounter = new Counter(le.blocks().size());
+        this.blocksCounter = new Counter(0);
         this.ballsCounter = new Counter(le.numberOfBalls());
         this.score = new Counter();
         this.running = true;
@@ -189,10 +189,10 @@ public class GameLevel implements Animation {
     public void doOneFrame(DrawSurface d) {
         this.sprites.drawAllOn(d);
         if (this.sensor.isPressed("p")) {
-            this.runner.run(new PauseGame(this.sensor));
+            this.runner.run(new KeyPressStoppableAnimation(this.sensor, this.sensor.SPACE_KEY , new PauseGame()));
         }
         this.sprites.notifyAllTimePassed();
-        if (this.blocksCounter.getValue() <= 0) {
+        if (this.blocksCounter.getValue() >= this.info.numberOfBlocksToRemove()) {
             this.sprites.notifyAllTimePassed();
             this.score.increase(100);
             this.sprites.drawAllOn(d);
@@ -207,6 +207,11 @@ public class GameLevel implements Animation {
     @Override
     public boolean shouldStop() {
         return !this.running;
+    }
+
+    @Override
+    public void setStop(boolean newCondition) {
+        this.running = newCondition;
     }
 
 

@@ -12,6 +12,7 @@ public class GameFlow {
     private KeyboardSensor sensor;
     private AnimationRunner animationRunner;
     private Counter score;
+    private boolean hasWon = true;
 
     /**
      * constructor.
@@ -25,6 +26,11 @@ public class GameFlow {
         this.sensor = ks;
     }
 
+    private void endGame() {
+        Animation end = new EndGameScreen(this.animationRunner.getGui().getKeyboardSensor(), this.score, this.hasWon);
+        this.animationRunner.run(new KeyPressStoppableAnimation(this.sensor, this.sensor.SPACE_KEY, end));
+    }
+
     public void runLevels(List<LevelInformation> levels) {
         for (LevelInformation levelInfo : levels) {
             GameLevel level = new GameLevel(this.sensor, this.animationRunner, levelInfo, this.score);
@@ -34,6 +40,7 @@ public class GameFlow {
             }
             // if level stopped due to a loss (no more balls) - break the for loop and end the game.
             if (level.getBallsCounter().getValue() <= 0) {
+                this.hasWon = false;
                 break;
             }
         }
@@ -51,6 +58,8 @@ public class GameFlow {
         levels.add(l3);
         GameFlow gameFlow = new GameFlow(ks, ar);
         gameFlow.runLevels(levels);
+        gameFlow.endGame();
+        gameFlow.animationRunner.getGui().close();
     }
 
 }

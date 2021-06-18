@@ -58,7 +58,7 @@ public class BlockRemover implements HitListener {
      */
     public void hitEvent(Block beingHit, Ball hitter) {
         beingHit.removeFromGame(this.gameLevel);
-        this.remainingBlocks.decrease();
+        this.remainingBlocks.increase();
         hitter.setColor(beingHit.getColor());
     }
 }

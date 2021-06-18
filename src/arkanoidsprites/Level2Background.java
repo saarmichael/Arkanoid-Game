@@ -16,5 +16,7 @@ public class Level2Background extends Block {
     @Override
     public void drawOn(DrawSurface surface) {
         super.drawOn(surface);
+        surface.setColor(Color.BLACK);
+
     }
 }
