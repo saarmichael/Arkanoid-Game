@@ -3,7 +3,14 @@ package arkanoidgame;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 
-public class KeyPressStoppableAnimation implements Animation{
+/**
+ * this is a rapper-class for Animation classes.
+ * this class is responsible for stopping behaviour that invoked from key-pressing.
+ *
+ * @author Michael Saar
+ * @since 20-06-2021
+ */
+public class KeyPressStoppableAnimation implements Animation {
 
     private KeyboardSensor keyboard;
     private String stopKey;
@@ -11,14 +18,20 @@ public class KeyPressStoppableAnimation implements Animation{
     private boolean stop;
     private boolean isKeyPressed;
 
-    public KeyPressStoppableAnimation (KeyboardSensor ks, String key, Animation animation) {
+    /**
+     * constructor.
+     *
+     * @param ks        KeyboardSensor
+     * @param key       stopping key.
+     * @param animation Animation.
+     */
+    public KeyPressStoppableAnimation(KeyboardSensor ks, String key, Animation animation) {
         this.keyboard = ks;
         this.stopKey = key;
         this.animation = animation;
         if (ks.isPressed(key)) {
             this.isKeyPressed = true;
-        }
-        else {
+        } else {
             this.isKeyPressed = false;
         }
     }
@@ -39,8 +52,4 @@ public class KeyPressStoppableAnimation implements Animation{
         return this.stop;
     }
 
-    @Override
-    public void setStop(boolean newCondition) {
-        this.stop = newCondition;
-    }
 }

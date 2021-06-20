@@ -1,9 +1,12 @@
+// 315240937
+// Michael Saar
+
 package arkanoidgame;
 
-import arkanoidsprites.Block;
-import arkanoidsprites.Level3Background;
-import arkanoidsprites.Sprite;
+import arkanoidsprites.Level2Background;
 import arkanoidsprites.Velocity;
+import arkanoidsprites.Block;
+import arkanoidsprites.Sprite;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
 
@@ -14,20 +17,20 @@ import java.util.List;
 /**
  * this Level properties are.
  * number of Balls: 3
- * number of Blocks: 40
+ * number of Blocks: 115
  * paddle size: normal
  * paddle speed: fast
  * background: none
- * number of Blocks to hit in order to win level: 15
+ * number of Blocks to hit in order to win level: 20
  *
  * @author Michael Saar
  * @since 10-06-2021
  */
-public class Level3 implements LevelInformation {
+public class Level4 implements LevelInformation {
 
     private static final Color[] BLOCKS_COLORS = {new Color(144, 238, 144), new Color(103, 216, 154),
             new Color(52, 190, 165), new Color(30, 169, 172), new Color(29, 128, 175),
-            new Color(28, 97, 177), new Color(33, 42, 165), new Color(52, 190, 165),
+            new Color(28, 97, 177), new Color(52, 190, 165), new Color(33, 42, 165),
             new Color(103, 216, 154), new Color(144, 238, 144)};
 
     @Override
@@ -76,27 +79,27 @@ public class Level3 implements LevelInformation {
 
     @Override
     public String levelName() {
-        return "Street-Ball";
+        return "BOSS";
     }
 
     @Override
     public Sprite getBackground() {
-        return new Level3Background(800, 600);
+        return new Level2Background(800, 600);
     }
 
     @Override
     public List<Block> blocks() {
         List<Block> blocks = new ArrayList<>();
-        int k = 275;
+        int k = 25;
         int q = 0;
         // add multiple Blocks arranged in a half-pyramid structure
-        for (int i = 200; i < 325; i += 25) {
+        for (int i = 100; i < 275; i += 25) {
             Color blockColor = BLOCKS_COLORS[q];
             for (int j = k; j < 775; j += 50) {
                 Block block = new Block(new Rectangle(new Point(j, i), 50, 25), blockColor);
                 blocks.add(block);
             }
-            k += 50;
+            // k += 50;
             q++;
         }
         return blocks;
@@ -105,21 +108,11 @@ public class Level3 implements LevelInformation {
 
     @Override
     public List<Block> unRemovableBlocks() {
-        Block b1 = new Block(
-                new Rectangle(new Point(180, 350), 60, 250), new Color(40, 46, 50));
-        //Block b2 = new Block(
-        //      new Rectangle(new Point(200, 430), 20, 50), new Color(40, 46, 50));
-        //Block b3 = new Block(
-        //      new Rectangle(new Point(205, 200), 10, 230), new Color(56, 67, 71));
-        List<Block> unBlocks = new ArrayList<>();
-        unBlocks.add(b1);
-        // unBlocks.add(b2);
-        // unBlocks.add(b3);
-        return unBlocks;
+        return null;
     }
 
     @Override
     public int numberOfBlocksToRemove() {
-        return 15;
+        return 20;
     }
 }

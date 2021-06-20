@@ -6,15 +6,17 @@ package arkanoidgame;
 
 import arkanoidsprites.SpriteCollection;
 import biuoop.DrawSurface;
-import biuoop.Sleeper;
 
-import java.awt.*;
+import java.awt.Color;
 
-// The CountdownAnimation will display the given gameScreen,
-// for numOfSeconds seconds, and on top of them it will show
-// a countdown from countFrom back to 1, where each number will
-// appear on the screen for (numOfSeconds / countFrom) seconds, before
-// it is replaced with the next one.
+/**
+ * The CountdownAnimation will display the given gameScreen, for numOfSeconds seconds, and on top of them it will show
+ * a countdown from countFrom back to 1, where each number will appear on the screen for
+ * (numOfSeconds / countFrom) seconds, before it is replaced with the next one.
+ *
+ * @author Michael Saar
+ * @since 20-06-2021
+ */
 public class CountdownAnimation implements Animation {
 
     private boolean stop;
@@ -26,8 +28,15 @@ public class CountdownAnimation implements Animation {
     private long timePassed;
     private long iterateTime;
     private long endTime;
-    private double size = 2;
+    private double size = 7;
 
+    /**
+     * constructor.
+     *
+     * @param numOfSeconds for the Count to last.
+     * @param countFrom    the number to start countdown from.
+     * @param gameScreen   the Sprites to display in the background.
+     */
     public CountdownAnimation(double numOfSeconds, int countFrom, SpriteCollection gameScreen) {
         this.numOfSeconds = numOfSeconds;
         this.countFrom = countFrom;
@@ -40,14 +49,15 @@ public class CountdownAnimation implements Animation {
         this.iterateTime = System.currentTimeMillis();
     }
 
+    @Override
     public void doOneFrame(DrawSurface d) {
         this.gameScreen.drawAllOn(d);
         d.setColor(new Color(27, 73, 33));
-        d.fillCircle(395, (d.getHeight() / 2) - 20, 50);
+        // d.fillCircle(395, (d.getHeight() / 2) - 20, 50);
         d.setColor(Color.BLACK);
-        d.drawText(380, (d.getHeight() / 2) + 2, String.valueOf(this.counter.getValue()), (int) (this.size * 42));
-        d.setColor(new Color(80, 232, 123));
-        d.drawText(383, d.getHeight() / 2, String.valueOf(this.counter.getValue()), (int) (this.size * 32));
+        d.drawText(345, (d.getHeight() / 2) + 2, String.valueOf(this.counter.getValue()), (int) (this.size * 42));
+        d.setColor(new Color(72, 229, 211));
+        d.drawText(348, d.getHeight() / 2, String.valueOf(this.counter.getValue()), (int) (this.size * 32));
         if (System.currentTimeMillis() > this.endTime) {
             this.stop = true;
             return;
@@ -56,10 +66,10 @@ public class CountdownAnimation implements Animation {
             this.counter.decrease();
             this.timePassed = 0;
             this.iterateTime = System.currentTimeMillis();
-            this.size = 2;
+            this.size = 7;
         }
         this.timePassed = System.currentTimeMillis() - this.iterateTime;
-        this.size = this.size - 0.02;
+        this.size = this.size - 0.07;
 
 
 
@@ -86,12 +96,9 @@ public class CountdownAnimation implements Animation {
          */
     }
 
+    @Override
     public boolean shouldStop() {
         return this.stop;
     }
 
-    @Override
-    public void setStop(boolean newCondition) {
-        this.stop = newCondition;
-    }
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * this Level properties are:
+ * this Level properties are.
  * number of Balls: 1
  * number of Blocks: 1
  * paddle size: normal
@@ -52,7 +52,7 @@ public class Level1 implements LevelInformation {
     @Override
     public List<Color> initialBallColor() {
         List<Color> ballsCs = new ArrayList<>();
-        ballsCs.add(new Color(0, 110, 80));
+        ballsCs.add(new Color(101, 197, 224));
         return ballsCs;
     }
 
@@ -68,7 +68,7 @@ public class Level1 implements LevelInformation {
 
     @Override
     public Color paddleColor() {
-        return new Color(6, 102, 90);
+        return new Color(7, 59, 8);
     }
 
     @Override
@@ -83,7 +83,8 @@ public class Level1 implements LevelInformation {
 
     @Override
     public List<Block> blocks() {
-        Block b1 = new Block(new Rectangle(new Point(380, 180), 40, 40), Color.RED);
+        Block b1 = new Block(
+                new Rectangle(new Point(380, 180), 40, 40), new Color(93, 250, 123));
         List<Block> blocksList = new ArrayList<>();
         blocksList.add(b1);
         return blocksList;

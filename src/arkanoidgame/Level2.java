@@ -11,6 +11,18 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this Level properties are.
+ * number of Balls: 10
+ * number of Blocks: 15
+ * paddle size: huge
+ * paddle speed: slow
+ * background: Green Sun
+ * number of Blocks to hit in order to win level: all
+ *
+ * @author Michael Saar
+ * @since 10-06-2021
+ */
 public class Level2 implements LevelInformation {
 
     @Override
@@ -55,7 +67,7 @@ public class Level2 implements LevelInformation {
 
     @Override
     public String levelName() {
-        return "level 2";
+        return "Green Peace";
     }
 
     @Override
@@ -65,10 +77,10 @@ public class Level2 implements LevelInformation {
 
     @Override
     public List<Block> blocks() {
-        // Block b1 = new Block(new geometryprimatives.Rectangle(new Point(380, 180), 40, 40), Color.RED);
+        // Block b1 = new Block(new Rectangle(new Point(380, 180), 40, 40), Color.RED);
         List<Block> blocksList = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            Block b = new Block(new Rectangle(new Point(25 + (i * 50), 200), 50, 25),
+            Block b = new Block(new Rectangle(new Point(25 + (i * 50), 250), 50, 25),
                     new Color(i, 10 * i, 7 * i));
             blocksList.add(b);
         }
@@ -82,6 +94,6 @@ public class Level2 implements LevelInformation {
 
     @Override
     public int numberOfBlocksToRemove() {
-        return 2;
+        return 10;
     }
 }

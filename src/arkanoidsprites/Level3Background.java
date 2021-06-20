@@ -1,6 +1,8 @@
 package arkanoidsprites;
 
 import arkanoidlisteners.HitListener;
+import biuoop.DrawSurface;
+import geometryprimatives.Line;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
 
@@ -14,4 +16,9 @@ public class Level3Background extends Block {
         super.setColor(new Color(139, 246, 216));
     }
 
+    @Override
+    public void drawOn(DrawSurface surface) {
+        super.drawOn(surface);
+        surface.setColor(new Color(48, 205, 138));
+    }
 }

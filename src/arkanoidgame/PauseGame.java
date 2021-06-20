@@ -6,11 +6,20 @@ package arkanoidgame;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 
+/**
+ * this class responsible for the behaviour of a paused screen.
+ *
+ * @author Michael Saar
+ * @since 20-06-2021
+ */
 public class PauseGame implements Animation {
 
     private KeyboardSensor keyboard;
     private boolean stop;
 
+    /**
+     * change the inner state when the game has been paused.
+     */
     public PauseGame() {
         this.stop = false;
     }
@@ -43,8 +52,4 @@ public class PauseGame implements Animation {
         return this.stop;
     }
 
-    @Override
-    public void setStop(boolean newCondition) {
-        this.stop = newCondition;
-    }
 }

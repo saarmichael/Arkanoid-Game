@@ -4,6 +4,8 @@
 package geometryprimatives;
 
 
+import biuoop.DrawSurface;
+
 import java.util.List;
 
 /**
@@ -217,6 +219,10 @@ public class Line {
                     || (p.getY() >= this.start.getY() && p.getY() <= this.end.getY())));
         }
         return false;
+    }
+
+    public void drawOn (DrawSurface d) {
+        d.drawLine((int) this.start.getX(), (int) this.start.getY(), (int) this.end.getX(), (int) this.end.getY());
     }
 
 }

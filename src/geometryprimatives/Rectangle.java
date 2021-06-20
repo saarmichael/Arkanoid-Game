@@ -3,6 +3,8 @@
 
 package geometryprimatives;
 
+import biuoop.DrawSurface;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -181,4 +183,6 @@ public class Rectangle {
     public void setTop(Line newTop) {
         this.top = newTop;
     }
+
+
 }
