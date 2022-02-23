@@ -19,6 +19,9 @@ public class SpriteCollection {
 
     private List<Sprite> sprites;
 
+    /**
+     * constructor.
+     */
     public SpriteCollection() {
         this.sprites = new ArrayList<>();
     }
@@ -26,7 +29,7 @@ public class SpriteCollection {
     /**
      * Constructor with parameter.
      *
-     * @param sprites
+     * @param sprites list of sprites.
      */
     public SpriteCollection(List<Sprite> sprites) {
         this.sprites = sprites;

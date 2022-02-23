@@ -1,7 +1,8 @@
-package arkanoidsprites;
-
 // 315240937
 // Michael Saar
+
+package arkanoidsprites;
+
 
 import arkanoidgame.GameLevel;
 import arkanoidlisteners.HitListener;
@@ -126,7 +127,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
     /**
      * add a list of Listeners to Block.
      *
-     * @param hls
+     * @param hls list of listeners.
      */
     public void addHitListeners(List<HitListener> hls) {
         // preventing from adding hl to all other Colliidable's hitListeners List

@@ -1,6 +1,8 @@
-package arkanoidsprites;
 // 315240937
 // Michael Saar
+
+package arkanoidsprites;
+
 
 import arkanoidgame.GameLevel;
 import biuoop.DrawSurface;
@@ -29,15 +31,15 @@ public interface Sprite {
 
     /**
      * @param gameLevel a game to add the Sprite to
-     *             <p>
-     *             adds a sprite to a Game
+     *                  <p>
+     *                  adds a sprite to a Game
      */
     void addToGame(GameLevel gameLevel);
 
     /**
      * @param gameLevel a game to remove Sprite from
-     *             <p>
-     *             adds a sprite to a Game
+     *                  <p>
+     *                  adds a sprite to a Game
      */
     void removeFromGame(GameLevel gameLevel);
 }

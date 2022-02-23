@@ -221,7 +221,12 @@ public class Line {
         return false;
     }
 
-    public void drawOn (DrawSurface d) {
+    /**
+     * drawing the line.
+     *
+     * @param d to draw on.
+     */
+    public void drawOn(DrawSurface d) {
         d.drawLine((int) this.start.getX(), (int) this.start.getY(), (int) this.end.getX(), (int) this.end.getY());
     }
 

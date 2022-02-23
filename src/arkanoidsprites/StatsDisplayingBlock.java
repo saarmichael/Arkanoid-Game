@@ -1,3 +1,6 @@
+// 315240937
+// Michael Saar
+
 package arkanoidsprites;
 
 import arkanoidgame.Counter;
@@ -28,6 +31,7 @@ public class StatsDisplayingBlock extends Block {
      * @param hitListeners list of HitListeners
      * @param text         the text to display
      * @param stat         the stat to display
+     * @param lives        number of balls in the game.
      */
     public StatsDisplayingBlock(
             Rectangle rect, Color color, List<HitListener> hitListeners, Counter stat, Counter lives, String text) {

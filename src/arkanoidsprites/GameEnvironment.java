@@ -1,7 +1,7 @@
-package arkanoidsprites;
-
 // 315240937
 // Michael Saar
+
+package arkanoidsprites;
 
 import biuoop.DrawSurface;
 import gamecollision.CollisionInfo;

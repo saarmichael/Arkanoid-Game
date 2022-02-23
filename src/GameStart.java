@@ -1,8 +1,13 @@
 // 315240937
 // Michael Saar
 
-package arkanoidgame;
-
+import arkanoidgame.Level1;
+import arkanoidgame.Level2;
+import arkanoidgame.Level3;
+import arkanoidgame.Level4;
+import arkanoidgame.LevelInformation;
+import arkanoidgame.GameFlow;
+import arkanoidgame.AnimationRunner;
 import biuoop.KeyboardSensor;
 
 import java.util.ArrayList;
@@ -14,7 +19,7 @@ import java.util.List;
  * @author Michael Saar
  * @since 20-06-2021
  */
-public class Ass6Game {
+public class GameStart {
 
     /**
      * main.
@@ -35,7 +40,7 @@ public class Ass6Game {
         levels.add(l4);
         GameFlow gameFlow = new GameFlow(ks, ar);
         List<LevelInformation> levelsToRun = new ArrayList<>();
-        if (args.length == 0) {
+        if (args.length <= 0) {
             levelsToRun.addAll(levels);
         } else {
             for (String arg : args) {
@@ -48,6 +53,9 @@ public class Ass6Game {
                     continue;
                 }
 
+            }
+            if (levelsToRun.isEmpty()) {
+                levelsToRun.addAll(levels);
             }
         }
         gameFlow.runLevels(levelsToRun);

@@ -3,10 +3,10 @@
 
 package arkanoidgame;
 
-import arkanoidsprites.Level2Background;
-import arkanoidsprites.Velocity;
 import arkanoidsprites.Block;
+import arkanoidsprites.Level3Background;
 import arkanoidsprites.Sprite;
+import arkanoidsprites.Velocity;
 import geometryprimatives.Point;
 import geometryprimatives.Rectangle;
 
@@ -84,7 +84,7 @@ public class Level4 implements LevelInformation {
 
     @Override
     public Sprite getBackground() {
-        return new Level2Background(800, 600);
+        return new Level3Background(800, 600);
     }
 
     @Override

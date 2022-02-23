@@ -55,17 +55,17 @@ public interface LevelInformation {
     String levelName();
 
     /**
-     * Returns a sprite with the background of the level.
+     * @return a sprite with the background of the level.
      */
     Sprite getBackground();
 
     /**
-     * The Blocks that make up this level, each block contains its size, color and location.
+     * @return The Blocks that make up this level, each block contains its size, color and location.
      */
     List<Block> blocks();
 
     /**
-     * The Blocks that make up this level but are not removable, each block contains its size, color and location.
+     * @return Blocks that make up this level but are not removable, each block contains its size, color and location.
      */
     List<Block> unRemovableBlocks();
 

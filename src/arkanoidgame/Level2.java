@@ -1,3 +1,6 @@
+// 315240937
+// Michael Saar
+
 package arkanoidgame;
 
 import arkanoidsprites.Sprite;
@@ -94,6 +97,6 @@ public class Level2 implements LevelInformation {
 
     @Override
     public int numberOfBlocksToRemove() {
-        return 10;
+        return 15;
     }
 }

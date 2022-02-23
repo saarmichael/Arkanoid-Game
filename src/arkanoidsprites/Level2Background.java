@@ -1,3 +1,6 @@
+// 315240937
+// Michael Saar
+
 package arkanoidsprites;
 
 import biuoop.DrawSurface;
@@ -7,8 +10,20 @@ import geometryprimatives.Rectangle;
 
 import java.awt.Color;
 
+/**
+ * this class handles the background graphics for Level2 class.
+ *
+ * @author Michael Saar
+ * @since 20-06-2021
+ */
 public class Level2Background extends Block {
 
+    /**
+     * constructor.
+     *
+     * @param width  of the Block
+     * @param height of the Block
+     */
     public Level2Background(int width, int height) {
         super(new Rectangle(new Point(0, 0), width, height));
         super.setColor(Color.WHITE);
